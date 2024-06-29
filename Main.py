@@ -229,7 +229,7 @@ def get_legal_acts(q):
 @st.cache_data
 def get_legal_database(q):
     database_answer = query_engine.query(q +"\nList similar cases to this query from the database, note the similarity and state the judgement and write how these cases can help answer this approach as precedents. ")
-    return database_answer.response + " \n\n\n Actual Sources - \n\n\n " + database_answer.source_nodes[0].node.extra_info["case_number"] + " & " +database_answer.source_nodes[1].node.extra_info["case_number"]
+    return database_answer.response + " \n\n\n Actual Sources - \n\n\n " + ", ".join([i.node.extra_info["case_number"] for i in database_answer.source_nodes])
     # return database_answer.response
 
 if st.session_state.start_framing_solutions:
