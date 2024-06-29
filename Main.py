@@ -228,7 +228,7 @@ def get_legal_acts(q):
 
 @st.cache_data
 def get_legal_database(q):
-    database_answer = query_engine.query(q +"\nList similar cases. If not exact, list similar cases. Write a small paragraph then list the cases like - 'Sources - <Case 1>, <Case 2>, ...'. ")
+    database_answer = query_engine.query(q +"\nList similar cases. If not exact, list similar cases. Write a small paragraph then list the cases like - 'Sources - <Case No.>, <Case No.>, ...'. ")
     # return database_answer.response + " \n\n\n Actual Sources - \n\n\n " + database_answer.source_nodes[0].node.extra_info["case_number"] + " & " +database_answer.source_nodes[1].node.extra_info["case_number"]
     return database_answer.response
 
