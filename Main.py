@@ -14,7 +14,7 @@ import streamlit as st
 
 client = OpenAI(api_key = st.secrets['OPENAI_API_KEY'])
 
-llm = OpenAI2(model = "gpt-4o", api_key = st.secrets['OPENAI_API_KEY'])
+llm = OpenAI2(model = "gpt-4", api_key = st.secrets['OPENAI_API_KEY'])
 
 st.set_page_config(layout = 'wide', page_title = 'Tree of Approach')
 
