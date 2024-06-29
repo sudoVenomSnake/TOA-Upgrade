@@ -9,12 +9,12 @@ import os
 from pydantic import BaseModel
 from typing import List
 from llama_index.program import OpenAIPydanticProgram
-from llama_index.llms.openai import OpenAI
+from llama_index.llms.openai import OpenAI as OpenAI2
 import streamlit as st
 
 client = OpenAI(api_key = st.secrets['OPENAI_API_KEY'])
 
-llm = OpenAI(model = "gpt-4o", api_key = st.secrets['OPENAI_API_KEY'])
+llm = OpenAI2(model = "gpt-4o", api_key = st.secrets['OPENAI_API_KEY'])
 
 st.set_page_config(layout = 'wide', page_title = 'Tree of Approach')
 
