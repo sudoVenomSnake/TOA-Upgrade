@@ -9,9 +9,12 @@ import os
 from pydantic import BaseModel
 from typing import List
 from llama_index.program import OpenAIPydanticProgram
+from llama_index.llms.openai import OpenAI
 import streamlit as st
 
 client = OpenAI(api_key = st.secrets['OPENAI_API_KEY'])
+
+llm = OpenAI(model = "gpt-4o", api_key = st.secrets['OPENAI_API_KEY'])
 
 st.set_page_config(layout = 'wide', page_title = 'Tree of Approach')
 
@@ -189,6 +192,7 @@ with st.expander("Create/Add Petition", expanded = not st.session_state.petition
 def get_approaches(petition):
     program = OpenAIPydanticProgram.from_defaults(
             output_cls = PetitionApproaches,
+            llm = llm,
             prompt_template_str = (
                 """{petition} \n\n Considering the situation and the corresponding petition, create a potential tree of path that the opposing counsel might follow or take in order to defend against the petition. Do include questions that query a legal database to find relevant statues and precedents. Furthermore, frame questions that are non-trivial and answerable by referencing multiple acts and precedents. The questions to be asked against a legal database has to complex and must refer precedents and acts. The following has to be the structure of the tree: The tree has to have atleast five and maximum 100 branches. the branches will have multiple nodes. Under every node expand upon the potential points to argue upon.  The nodes and branches can overlap. There has to be multiple intersection branches. remember the nodes should be framed as a question or a comlex legal situation. The leaf node should end as a question. The question should be followed up by a legal research question referring to a legal database and legal acts database. The questions should be tailored to indian case laws and acts.
                 example approach is : title - Was the decision to amalgamate made in accordance with the Company's Act, 2013?
