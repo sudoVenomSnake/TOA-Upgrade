@@ -30,7 +30,7 @@ st.title("Tree of Approach")
 #     index_choice = st.radio(label = "Please select an index from the options below -", options = os.listdir("Insurance"))
 
 # with st.expander("Model Selection"):
-model = "gpt-4o"]
+model = "gpt-4o"
 
 # if "loaded" not in st.session_state:
 #     with open(f"template.json", "r") as f:
